@@ -1,14 +1,14 @@
-package at.study.automation.model.user;
+package at.study.automation.model;
 
 import java.time.LocalDateTime;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
-@NoArgsConstructor
 @Setter
 @Getter
+@Accessors(chain = true)
 public abstract class CreatableEntity extends Entity {
 
     protected LocalDateTime createdOn = LocalDateTime.now();

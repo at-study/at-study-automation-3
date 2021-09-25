@@ -1,20 +1,27 @@
 package at.study.automation.model.user;
 
+import at.study.automation.db.requests.TokenRequests;
 import at.study.automation.model.Creatable;
+import at.study.automation.model.CreatableEntity;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import static at.study.automation.utils.StringUtils.randomHexString;
 
-@NoArgsConstructor
 @Setter
 @Getter
+@Accessors(chain = true)
 public class Token extends CreatableEntity implements Creatable<Token> {
 
     private Integer userId;
     private TokenType action = TokenType.API;
     private String value = randomHexString(40);
+
+    public Token(User user) {
+        this.userId = user.getId();
+        user.getTokens().add(this);
+    }
 
     public enum TokenType {
         SESSION,
@@ -24,7 +31,7 @@ public class Token extends CreatableEntity implements Creatable<Token> {
 
     @Override
     public Token create() {
-        // TODO: Реализовать с помощью SQL-Запроса
-        throw new UnsupportedOperationException();
+        new TokenRequests().create(this);
+        return this;
     }
 }
