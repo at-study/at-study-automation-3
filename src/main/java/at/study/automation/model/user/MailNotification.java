@@ -1,5 +1,7 @@
 package at.study.automation.model.user;
 
+import java.util.stream.Stream;
+
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -12,4 +14,10 @@ public enum MailNotification {
 
     private final String description;
 
+    public static MailNotification of(String description) {
+        return Stream.of(values())
+                .filter(mailNotification -> mailNotification.description.equals(description))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Не найден объект enum MailNotification"));
+    }
 }
