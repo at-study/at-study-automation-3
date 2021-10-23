@@ -4,7 +4,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import at.study.automation.model.user.User;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class LoginPage extends Page {
 
     @FindBy(xpath = "//input[@id='username']")
@@ -18,10 +21,6 @@ public class LoginPage extends Page {
 
     @FindBy(xpath = "//div[@id='flash_error']")
     public WebElement errorFlash;
-
-    public LoginPage() {
-        super();
-    }
 
     public void login(String login, String password) {
         loginInput.sendKeys(login);
