@@ -8,6 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 import at.study.automation.property.Property;
+import io.qameta.allure.Step;
 
 public class BrowserUtils {
 
@@ -26,5 +27,10 @@ public class BrowserUtils {
         } finally {
             BrowserManager.getBrowser().getDriver().manage().timeouts().implicitlyWait(Property.getIntegerProperty("element.timeout"), TimeUnit.SECONDS);
         }
+    }
+
+    @Step("Нажимаю на элемент {1}")
+    public static void click(WebElement element, String description) {
+        element.click();
     }
 }

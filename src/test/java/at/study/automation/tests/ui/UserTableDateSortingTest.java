@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import at.study.automation.model.user.User;
 
+import static at.study.automation.ui.browser.BrowserUtils.click;
 import static at.study.automation.ui.browser.BrowserUtils.getElementsText;
 import static at.study.automation.utils.CompareUtils.assertListSortedByDateAsc;
 import static at.study.automation.utils.CompareUtils.assertListSortedByDateDesc;
@@ -21,17 +22,17 @@ public class UserTableDateSortingTest extends BaseUITest {
 
         openBrowser("/login");
         loginPage.login(admin);
-        headerPage.administration.click();
-        administrationPage.users.click();
+        click(headerPage.administration, "Администрирование");
+        click(administrationPage.users, "Пользователи");
     }
 
-    @Test
+    @Test(description = "Администрирование. Пользователи. Проверка сортировки списка дат в таблице пользователей")
     public void testUsersTableDateSorting() {
-        userTablePage.button("Создано").click();
+        click(userTablePage.button("Создано"), "Создано");
         List<String> creationDatesByDesc = getElementsText(userTablePage.creationDates);
         assertListSortedByDateDesc(creationDatesByDesc);
 
-        userTablePage.button("Создано").click();
+        click(userTablePage.button("Создано"), "Создано");
         List<String> creationDatesByAsc = getElementsText(userTablePage.creationDates);
         assertListSortedByDateAsc(creationDatesByAsc);
     }

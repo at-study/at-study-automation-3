@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.testng.Assert;
 
+import io.qameta.allure.Step;
+
 import static java.time.format.DateTimeFormatter.ofPattern;
 
 public class CompareUtils {
@@ -19,12 +21,14 @@ public class CompareUtils {
     };
     private static final Comparator<String> DATE_ASC_COMPARATOR = DATE_DESC_COMPARATOR.reversed();
 
+    @Step("Проверка сортировки списка дат по убыванию")
     public static void assertListSortedByDateDesc(List<String> dates) {
         List<String> datesCopy = new ArrayList<>(dates);
         datesCopy.sort(DATE_DESC_COMPARATOR);
         Assert.assertEquals(dates, datesCopy);
     }
 
+    @Step("Проверка сортировки списка дат по возрастанию")
     public static void assertListSortedByDateAsc(List<String> dates) {
         List<String> datesCopy = new ArrayList<>(dates);
         datesCopy.sort(DATE_ASC_COMPARATOR);

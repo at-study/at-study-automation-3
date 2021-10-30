@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import at.study.automation.property.Property;
+import io.qameta.allure.Attachment;
 import lombok.Getter;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -39,6 +40,7 @@ public class Browser {
         getDriver().navigate().refresh();
     }
 
+    @Attachment("Скриншот")
     public byte[] takeScreenshot() {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }

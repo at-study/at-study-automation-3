@@ -11,6 +11,7 @@ import at.study.automation.model.Deleteable;
 import at.study.automation.model.Updateable;
 import at.study.automation.model.project.Project;
 import at.study.automation.model.role.Role;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -57,6 +58,7 @@ public class User extends CreatableEntity implements Creatable<User>, Updateable
     }
 
     @Override
+    @Step("Создан пользователь в БД")
     public User create() {
         new UserRequests().create(this);
         tokens.forEach(t -> t.setUserId(id));
@@ -67,6 +69,7 @@ public class User extends CreatableEntity implements Creatable<User>, Updateable
     }
 
     @Override
+    @Step("Удален пользователь в БД")
     public User delete() {
         new UserRequests().delete(this.id);
         return this;
@@ -78,6 +81,7 @@ public class User extends CreatableEntity implements Creatable<User>, Updateable
         return this;
     }
 
+    @Step("Пользователю добавлен проект {0} с ролями {1}")
     public void addProject(Project project, List<Role> roles) {
         // TODO: Реализовать с помощью SQL-запроса
     }

@@ -9,6 +9,7 @@ import at.study.automation.ui.pages.HeaderPage;
 import at.study.automation.ui.pages.LoginPage;
 import at.study.automation.ui.pages.Page;
 import at.study.automation.ui.pages.UserTablePage;
+import io.qameta.allure.Step;
 
 public class BaseUITest {
 
@@ -18,11 +19,13 @@ public class BaseUITest {
     protected AdministrationPage administrationPage;
     protected UserTablePage userTablePage;
 
+    @Step("Открыт браузер на главной странице")
     protected void openBrowser() {
         browser = BrowserManager.getBrowser();
         initPages();
     }
 
+    @Step("Открыт браузер на странице {0}")
     protected void openBrowser(String uri) {
         browser = BrowserManager.getBrowser(uri);
         initPages();
@@ -35,7 +38,7 @@ public class BaseUITest {
         userTablePage = Page.getPage(UserTablePage.class);
     }
 
-    @AfterMethod
+    @AfterMethod(description = "Закрытие браузера")
     public void tearDown() {
         BrowserManager.closeBrowser();
     }
