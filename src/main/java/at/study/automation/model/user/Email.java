@@ -4,6 +4,7 @@ import at.study.automation.db.requests.EmailRequests;
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -12,6 +13,7 @@ import static at.study.automation.utils.StringUtils.randomEmail;
 @Setter
 @Getter
 @Accessors(chain = true)
+@NoArgsConstructor
 public class Email extends CreatableEntity implements Creatable<Email> {
 
     private Integer userId;
