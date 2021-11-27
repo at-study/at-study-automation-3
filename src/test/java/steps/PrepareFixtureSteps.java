@@ -63,5 +63,4 @@ public class PrepareFixtureSteps {
         user.create();
         Context.getStash().put(userStashId, user);
     }
-
 }
