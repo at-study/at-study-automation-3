@@ -7,7 +7,6 @@ import lombok.SneakyThrows;
 
 public class Property {
 
-    // TODO: Параметризовать системной переменной
     private static String propertiesName = "default.properties";
     private static Properties properties = new Properties();
     private static boolean isInitialized = false;
@@ -21,6 +20,9 @@ public class Property {
     public static String getStringProperty(String key) {
         if (!isInitialized) {
             init();
+        }
+        if (System.getProperty(key) != null) {
+            return System.getProperty(key);
         }
         return properties.getProperty(key);
     }
